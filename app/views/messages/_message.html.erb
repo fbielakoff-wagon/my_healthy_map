@@ -1,0 +1,9 @@
+<div class="mb-3 <%= message.role == 'user' ? 'text-end' : 'text-start' %>">
+  <span class="badge <%= message.role == 'user' ? 'bg-primary' : 'bg-secondary' %> mb-1">
+    <%= message.role.capitalize %>
+  </span>
+  <p class="mb-0"><%= message.content %></p>
+  <% if message.attachment_url.present? %>
+    <%= link_to "Attachment", message.attachment_url, target: "_blank", class: "small" %>
+  <% end %>
+</div>

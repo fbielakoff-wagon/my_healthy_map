@@ -1,1 +1,21 @@
-<h1><%= @health_goal.name %></h1>
+<div class="container py-5">
+  <h1 class="mb-4"><%= @health_goal.name %></h1>
+
+  <%= form_with model: Chat.new, url: health_goal_chats_path(@health_goal) do |f| %>
+    <div class="mb-3">
+      <%= f.text_field :title, class: "form-control", placeholder: "Optional chat title" %>
+    </div>
+    <%= f.submit "Start a chat about this goal", class: "btn btn-primary" %>
+  <% end %>
+
+  <% if @health_goal.chats.any? %>
+    <h2 class="mt-5 mb-3">Your chats</h2>
+    <ul class="list-group">
+      <% @health_goal.chats.each do |chat| %>
+        <li class="list-group-item">
+          <%= link_to chat.title.presence || "Untitled chat (#{chat.created_at.strftime('%b %d')})", chat_path(chat) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
