@@ -1,2 +1,26 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+
+  <h1 class="display-3 fw-bold mb-3">
+    My Healthy Coach
+  </h1>
+
+  <p class="lead col-lg-7 mb-5">
+    Build healthier habits with personalised AI coaching.
+    Create goals, stay accountable and make steady progress.
+  </p>
+
+  <% if user_signed_in? %>
+    <p class="mt-4 text-success fw-semibold">
+  ✓ Welcome back! You're signed in.
+</p>
+  <% else %>
+    <%= link_to "Get Started",
+      new_user_registration_path,
+      class: "btn btn-primary btn-lg me-2" %>
+
+    <%= link_to "Log in",
+      new_user_session_path,
+      class: "btn btn-outline-secondary btn-lg" %>
+  <% end %>
+
+</div>
