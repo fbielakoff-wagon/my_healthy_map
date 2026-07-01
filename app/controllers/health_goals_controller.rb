@@ -14,6 +14,13 @@ class HealthGoalsController < ApplicationController
   def create
     @health_goal = HealthGoal.new(health_goal_params)
     @health_goal.user = current_user
+    @health_goal.system_prompt = "You are a personal health coach helping a user achieve a specific goal.
+
+Goal: #{@health_goal.name}
+Category: #{@health_goal.module}
+Details: #{@health_goal.content}
+
+Be encouraging, specific and practical. Ask clarifying questions when needed. Keep responses concise and actionable."
     if @health_goal.save
       redirect_to health_goal_path(@health_goal)
     else
@@ -43,6 +50,6 @@ class HealthGoalsController < ApplicationController
   private
 
   def health_goal_params
-    params.require(:health_goal).permit(:name, :module, :content, :system_prompt)
+    params.require(:health_goal).permit(:name, :module, :content)
   end
 end

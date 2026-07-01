@@ -2,23 +2,18 @@
 
 <%= form_with model: @health_goal do |f| %>
   <div>
-    <label>Name</label>
+    <label>Goal</label>
     <%= f.text_field :name %>
   </div>
 
   <div>
-    <label>Module</label>
+    <label>Category</label>
     <%= f.text_field :module %>
   </div>
 
   <div>
-    <label>Content</label>
+    <label>Details</label>
     <%= f.text_area :content %>
-  </div>
-
-  <div>
-    <label>System Prompt</label>
-    <%= f.text_area :system_prompt %>
   </div>
 
   <%= f.submit "Create Health Goal" %>
