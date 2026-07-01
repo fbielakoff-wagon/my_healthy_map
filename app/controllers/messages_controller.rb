@@ -5,6 +5,10 @@ class MessagesController < ApplicationController
     @message.role = "user"
 
     if @message.save
+      ruby_llm_chat = RubyLLM.chat
+      response = ruby_llm_chat.with_instructions(@chat.health_goal.system_prompt).ask(@message.content)
+      @chat.messages.create(role: "assistant", content: response.content)
+
       maybe_generate_chat_title
       redirect_to chat_path(@chat)
     else
@@ -21,7 +25,6 @@ class MessagesController < ApplicationController
   def maybe_generate_chat_title
     return if @chat.title.present?
     return unless @chat.messages.count >= 3
-
     # Placeholder: AI title generation goes here once the AI integration exists.
     # @chat.update(title: AiTitleGenerator.call(@chat))
   end
