@@ -6,12 +6,12 @@
     <%= render @chat.messages %>
   </div>
 
-  <%= form_with model: @message, url: chat_messages_path(@chat) do |f| %>
+  <%= form_with model: @message, url: chat_messages_path(@chat), html: { multipart: true } do |f| %>
     <div class="mb-3">
       <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "Type your message..." %>
     </div>
     <div class="mb-3">
-      <%= f.text_field :attachment_url, class: "form-control", placeholder: "Optional attachment URL" %>
+      <%= f.file_field :attachment, class: "form-control" %>
     </div>
     <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
