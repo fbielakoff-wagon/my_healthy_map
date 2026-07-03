@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.fetch(:message, {}).permit(:content, :attachment_url)
+    params.fetch(:message, {}).permit(:content, :attachment)
   end
 
   def maybe_generate_chat_title

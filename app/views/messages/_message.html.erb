@@ -3,7 +3,7 @@
     <%= message.role.capitalize %>
   </span>
   <p class="mb-0"><%= message.content %></p>
-  <% if message.attachment_url.present? %>
-    <%= link_to "Attachment", message.attachment_url, target: "_blank", class: "small" %>
-  <% end %>
+  <% if message.attachment.attached? %>
+  <%= link_to "Attachment", url_for(message.attachment), target: "_blank", class: "small" %>
+<% end %>
 </div>
