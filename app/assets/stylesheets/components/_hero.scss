@@ -1,0 +1,31 @@
+.hero {
+  min-height: 80vh;
+  background:
+    radial-gradient(circle at top right, rgba(182, 255, 59, 0.12), transparent 35%),
+    $light-gray;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0;
+}
+
+.hero-kicker {
+  display: inline-block;
+  color: $green;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  color: $gray;
+}
+
+.hero-copy {
+  font-size: 1.25rem;
+  color: rgba(17, 17, 17, 0.72);
+  max-width: 560px;
+}

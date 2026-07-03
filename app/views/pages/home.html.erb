@@ -1,27 +1,75 @@
-<div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="hero-kicker">✦ Personal AI Coach</div>
 
-  <h1 class="display-3 fw-bold mb-3">
-    My Healthy Coach
-  </h1>
+        <h1 class="hero-title mb-4">
+          Build habits that actually stick.
+        </h1>
 
-  <p class="lead col-lg-7 mb-5">
-    Build healthier habits with personalised AI coaching.
-    Create goals, stay accountable and make steady progress.
+        <p class="hero-copy mb-5">
+          Set a health goal, get focused coaching, and turn intention into steady progress.
+        </p>
+
+<% if user_signed_in? %>
+  <p class="text-success fw-semibold mb-3">
+    ✓ Welcome back! You're signed in.
   </p>
 
-  <% if user_signed_in? %>
-  <p class="mt-4 text-success fw-semibold">
-  ✓ Welcome back! You're signed in.
-  </p>
-  <%= link_to "Set a health goal", new_health_goal_path, class: "btn btn-primary btn-lg" %>
+  <div class="d-flex align-items-center gap-3">
+    <%= link_to "Start coaching",
+      new_health_goal_path,
+      class: "btn btn-primary btn-lg" %>
+
+    <%= button_to "Sign out",
+      destroy_user_session_path,
+      method: :delete,
+      class: "btn btn-outline-primary btn-lg" %>
+  </div>
+
 <% else %>
-  <%= link_to "Get Started",
+
+  <%= link_to "Get started",
     new_user_registration_path,
     class: "btn btn-primary btn-lg me-2" %>
 
   <%= link_to "Log in",
     new_user_session_path,
-    class: "btn btn-outline-secondary btn-lg" %>
+    class: "btn btn-outline-primary btn-lg" %>
+
 <% end %>
 
-</div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="app-card">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="ai-avatar">✦</div>
+            <div>
+              <p class="mb-0 fw-bold">Healthy Coach</p>
+              <p class="mb-0 text-muted small">AI coaching assistant</p>
+            </div>
+          </div>
+
+          <p class="ai-card-label mb-2">Goal</p>
+          <p class="fw-semibold mb-0">Improve my sleep</p>
+
+          <div class="ai-divider"></div>
+
+          <p class="ai-card-label mb-2">You</p>
+          <p class="mb-0">
+            “I keep scrolling before bed and then I sleep badly.”
+          </p>
+
+          <div class="ai-divider"></div>
+
+          <p class="ai-card-label mb-2">Coach</p>
+          <p class="mb-0">
+            Let’s make this smaller. Tonight, charge your phone outside the bedroom and choose one wind-down cue. We’ll build from there.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
