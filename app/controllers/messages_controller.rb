@@ -6,7 +6,13 @@ class MessagesController < ApplicationController
 
     if @message.save
       ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(@chat.health_goal.system_prompt).ask(@message.content)
+      ruby_llm_chat.with_instructions(@chat.health_goal.system_prompt)
+
+      @chat.messages.order(:created_at).where.not(id: @message.id).each do |msg|
+        ruby_llm_chat.add_message(role: msg.role.to_sym, content: msg.content)
+      end
+
+      response = ruby_llm_chat.ask(@message.content)
       @chat.messages.create(role: "assistant", content: response.content)
 
       maybe_generate_chat_title
