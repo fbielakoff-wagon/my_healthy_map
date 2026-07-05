@@ -1,7 +1,12 @@
 <div class="mb-3 <%= message.role == 'user' ? 'text-end' : 'text-start' %>">
-  <span class="badge <%= message.role == 'user' ? 'bg-primary' : 'bg-secondary' %> mb-1">
+  <div class="d-flex align-items-center gap-2 <%= 'justify-content-end' if message.role == 'user' %> mb-1">
+  <% if message.role == 'assistant' %>
+    <span class="avatar-ai"><i class="fa-solid fa-bolt"></i></span>
+  <% end %>
+  <span class="badge <%= message.role == 'user' ? 'bg-primary' : 'bg-secondary' %>">
     <%= message.role.capitalize %>
   </span>
+</div>
   <p class="mb-0"><%= message.content %></p>
   <% if message.attachment.attached? %>
   <%= link_to "Attachment", url_for(message.attachment), target: "_blank", class: "small" %>

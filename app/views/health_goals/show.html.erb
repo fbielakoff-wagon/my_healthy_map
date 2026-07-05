@@ -9,13 +9,13 @@
   <% end %>
 
   <% if @health_goal.chats.any? %>
-    <h2 class="mt-5 mb-3">Your chats</h2>
-    <ul class="list-group">
+    <div class="app-card mt-4">
+      <h2 class="mb-3">Your chats</h2>
       <% @health_goal.chats.each do |chat| %>
-        <li class="list-group-item">
-          <%= link_to chat.title.presence || "Untitled chat (#{chat.created_at.strftime('%b %d')})", chat_path(chat) %>
-        </li>
+        <div class="ai-divider py-2">
+          <%= link_to "#{chat.title.presence || 'Untitled chat'} (#{chat.created_at.strftime('%b %d')})", chat_path(chat) %>
+        </div>
       <% end %>
-    </ul>
+    </div>
   <% end %>
 </div>
