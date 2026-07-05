@@ -1,0 +1,36 @@
+.app-card {
+  background: white;
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 24px 60px rgba(17, 17, 17, 0.10);
+  transition: 0.25s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+}
+
+.ai-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $accent;
+  color: $gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+.ai-card-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(17, 17, 17, 0.55);
+  font-weight: 800;
+}
+
+.ai-divider {
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  margin: 1.25rem 0;
+}
