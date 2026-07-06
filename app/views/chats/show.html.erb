@@ -1,18 +1,32 @@
 <div class="container py-5">
-  <h1 class="mb-1"><%= @chat.title.presence || "Chat" %></h1>
-  <p class="text-muted mb-4">About: <%= @chat.health_goal.name %></p>
+  <div class="app-card">
+    <div class="mb-4">
+     <%= link_to "← Back to chat history", health_goal_path(@chat.health_goal), class: "text-muted small" %>
+    </div
+    <h1 class="mb-1"><%= @chat.title.presence || "Chat" %></h1>
+    <span class="goal-badge mb-4 d-inline-block"><%= @chat.health_goal.name %></span>
 
-  <div class="mb-4">
-    <%= render @chat.messages %>
+    <div class="mb-4">
+    <% if @chat.messages.empty? %>
+      <div class="d-flex align-items-center gap-2 mb-4">
+        <span class="avatar-ai"><i class="fa-solid fa-bolt"></i></span>
+        <div>
+          <div class="fw-bold">Healthy Coach</div>
+          <div class="text-muted small">AI coaching assistant</div>
+        </div>
+      </div>
+    <% end %>
+      <%= render @chat.messages %>
+    </div>
+
+    <%= form_with model: @message, url: chat_messages_path(@chat), html: { multipart: true } do |f| %>
+      <div class="mb-3">
+        <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "Type your message..." %>
+      </div>
+      <div class="mb-3">
+        <%= f.file_field :attachment, class: "form-control" %>
+      </div>
+      <%= f.submit "Send", class: "btn btn-primary" %>
+    <% end %>
   </div>
-
-  <%= form_with model: @message, url: chat_messages_path(@chat), html: { multipart: true } do |f| %>
-    <div class="mb-3">
-      <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "Type your message..." %>
-    </div>
-    <div class="mb-3">
-      <%= f.file_field :attachment, class: "form-control" %>
-    </div>
-    <%= f.submit "Send", class: "btn btn-primary" %>
-  <% end %>
 </div>

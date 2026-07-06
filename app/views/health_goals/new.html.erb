@@ -1,20 +1,35 @@
-<h1>New Health Goal</h1>
+<div class="container py-5">
+  <div class="app-card" style="max-width: 600px; margin: 0 auto;">
 
-<%= form_with model: @health_goal do |f| %>
-  <div>
-    <label>Goal</label>
-    <%= f.text_field :name %>
+    <div class="d-flex align-items-center gap-3 mb-4">
+      <span class="avatar-ai"><i class="fa-solid fa-bolt"></i></span>
+      <div>
+        <h1 class="mb-0">New Health Goal</h1>
+        <p class="text-muted small mb-0">Tell your AI coach what you want to work on</p>
+      </div>
+    </div>
+
+    <div class="ai-divider mb-4"></div>
+
+    <%= form_with model: @health_goal do |f| %>
+
+      <div class="mb-3">
+        <label class="ai-card-label mb-1">Goal</label>
+        <%= f.text_field :name, class: "form-control", placeholder: "e.g. Eat better, Sleep more..." %>
+      </div>
+
+      <div class="mb-3">
+        <label class="ai-card-label mb-1">Category</label>
+        <%= f.text_field :module, class: "form-control", placeholder: "e.g. Nutrition, Sleep, Fitness..." %>
+      </div>
+
+      <div class="mb-4">
+        <label class="ai-card-label mb-1">Details</label>
+        <%= f.text_area :content, class: "form-control", rows: 4, placeholder: "Tell us a bit more about your goal..." %>
+      </div>
+
+      <%= f.submit "Start coaching →", class: "btn btn-primary" %>
+
+    <% end %>
   </div>
-
-  <div>
-    <label>Category</label>
-    <%= f.text_field :module %>
-  </div>
-
-  <div>
-    <label>Details</label>
-    <%= f.text_area :content %>
-  </div>
-
-  <%= f.submit "Create Health Goal" %>
-<% end %>
+</div>
