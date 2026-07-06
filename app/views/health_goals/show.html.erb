@@ -1,4 +1,7 @@
 <div class="container py-5">
+  <div class="mb-4">
+    <%= link_to "← Back to new goal", new_health_goal_path, class: "text-muted small" %>
+  </div>
   <h1 class="mb-4"><%= @health_goal.name %></h1>
 
   <%= form_with model: Chat.new, url: health_goal_chats_path(@health_goal) do |f| %>
