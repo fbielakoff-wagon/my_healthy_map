@@ -42,6 +42,9 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+# Extract text from PDF attachments before sending them to the AI
+gem "pdf-reader", "~> 2.12"
+
 gem "sprockets-rails"
 gem "bootstrap", "~> 5.3"
 gem "autoprefixer-rails"
