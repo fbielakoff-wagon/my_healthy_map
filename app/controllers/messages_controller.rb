@@ -31,7 +31,15 @@ class MessagesController < ApplicationController
   def maybe_generate_chat_title
     return if @chat.title.present?
     return unless @chat.messages.count >= 3
-    # Placeholder: AI title generation goes here once the AI integration exists.
-    # @chat.update(title: AiTitleGenerator.call(@chat))
+
+    first_user_message = @chat.messages.find_by(role: "user")
+
+    title_chat = RubyLLM.chat
+    title_chat.with_instructions(
+      "Generate a short, descriptive, 3-to-6-word title that summarizes the user's question. Reply with only the title, no punctuation or quotes."
+    )
+    response = title_chat.ask(first_user_message.content)
+
+    @chat.update(title: response.content)
   end
 end
